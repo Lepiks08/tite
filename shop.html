@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LostKidz - Shop</title>
+    <link rel="stylesheet" href="shop.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+    <div class="logo-and-title">
+        <div class="logo"><img src="logo.jpg" alt="Logo"></div>
+        <h1>LostKidz</h1>
+    </div>
+    <div class="nav-links">
+        <div class="nav-left">
+            <a href="index.html">Home</a>
+            <a href="shop.html">Shop</a>
+            <a href="employee.html">Employee</a>
+            <a href="cart.html">Cart</a>
+        </div>
+        <div class="nav-right">
+            <a href="login.html" id="authBtn" class="auth-button">Login</a>
+        </div>
+    </div>
+</header>
+
+    <!-- Main Shop Content -->
+    <main>
+        <div class="search-container">
+            <input type="text" id="search-bar" class="search-bar" placeholder="Search for products..." oninput="filterItems()">
+        </div>
+
+        <div class="products" id="product-container">
+            <!-- Product Cards will be dynamically added here -->
+        </div>
+
+        <!-- Pagination Controls -->
+        <div id="pagination">
+            <button id="prev-btn" onclick="changePage(-1)">Previous</button>
+            <button id="next-btn" onclick="changePage(1)">Next</button>
+        </div>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <!-- Quick Links section, aligned from right to left -->
+        <div class="footer-box quick-links">
+            <h3>Quick Links</h3>
+            <a href="index.html">Home</a>
+            <a href="shop.html">Shop</a>
+            <a href="employee.html">Employee</a>
+        </div>
+    
+        <!-- About Us section, centered -->
+        <div class="footer-box about-us">
+            <h3>About Us</h3>
+            <p>We are committed to providing the best service possible.</p>
+        </div>
+    
+        <!-- For More Questions section, upper-right aligned -->
+        <div class="footer-box for-more-questions">
+            <h3>For more questions</h3>
+            <form>
+                <input type="email" placeholder="Enter your email">
+                <button type="submit">Email here</button>
+            </form>
+        </div>
+    </footer>
+
+    <script>
+        // Updated list of products (total 40 items now)
+        let products = [
+            { id: 1, name: 'Shirt', price: 500  , image: 'BoxS.jpg' },
+            { id: 2, name: 'Camo Shirt', price: 650, image: 'CamoS.jpg' },
+            { id: 3, name: 'Trucker Cap Camo', price: 250, image: 'CamoCap.jpg' },
+            // ... Add more products as required
+        ];
+
+        let currentPage = 1;
+        const itemsPerPage = 6;
+        let filteredProducts = products; // Initially, no filter applied
+
+        // Function to format prices (PHP style)
+        function formatPHP(price) {
+            return '₱' + price.toLocaleString('en-PH');
+        }
+
+        // Function to display products dynamically (with pagination)
+        function displayProducts(page) {
+            const start = (page - 1) * itemsPerPage;
+            const end = page * itemsPerPage;
+            const paginatedProducts = filteredProducts.slice(start, end);
+
+            const container = document.getElementById('product-container');
+            container.innerHTML = ''; // Clear previous content
+
+            paginatedProducts.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.classList.add('product-card');
+                productCard.innerHTML = `
+                    <img src="${product.image}" alt="${product.name}">
+                    <h3>${product.name}</h3>
+                    <p>${formatPHP(product.price)}</p>
+                    <button onclick="addToCart('${product.name}', ${product.price}, '${product.image}')">Add to Cart</button>
+                `;
+                container.appendChild(productCard);
+            });
+
+            // Handle pagination buttons
+            document.getElementById('prev-btn').disabled = page === 1;
+            document.getElementById('next-btn').disabled = page * itemsPerPage >= filteredProducts.length;
+        }
+
+        // Search functionality
+        function filterItems() {
+            const searchQuery = document.getElementById('search-bar').value.toLowerCase();
+            filteredProducts = products.filter(product => product.name.toLowerCase().includes(searchQuery));
+            currentPage = 1; // Reset to the first page after filtering
+            displayProducts(currentPage); // Re-display the filtered products
+        }
+
+        // Add to cart functionality
+        function addToCart(name, price, image) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const existingProductIndex = cart.findIndex(item => item.name === name);
+
+            if (existingProductIndex >= 0) {
+                cart[existingProductIndex].quantity += 1;  // Increase quantity if already in cart
+            } else {
+                cart.push({ name, price, image, quantity: 1 });  // Add new item
+            }
+
+            localStorage.setItem('cart', JSON.stringify(cart));
+            document.getElementById('cart-count').innerText = cart.reduce((total, item) => total + item.quantity, 0);
+        }
+
+        // Page change functionality
+        function changePage(direction) {
+            currentPage += direction;
+            displayProducts(currentPage);
+        }
+
+        // Initial product display
+        displayProducts(currentPage);
+    </script>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+

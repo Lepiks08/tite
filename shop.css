@@ -1,0 +1,383 @@
+/* Basic reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-image: url(BG1.webp);
+    background-size: cover;
+    background-position: center;
+    color: #333333; /* Dark gray text */
+    padding-bottom: 60px;
+}
+
+/* Header Section */
+/* SHARED HEADER STYLES */
+/* SHARED HEADER STYLES - SPACED OUT VERSION */
+header {
+    background-image: url('BG1.webp');
+    padding: 25px 5%; /* Dinagdagan ang taas at gilid (5%) para hindi dikit sa screen */
+    display: flex;
+    justify-content: space-between; /* Pinaghihiwalay ang Logo at Links */
+    align-items: center;
+    flex-wrap: wrap;
+    border-bottom: 2px solid #FF5733;
+}
+
+header .logo-and-title {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Space sa pagitan ng logo at "LostKidz" text */
+}
+
+header .logo img {
+    width: 150px; /* Bahagyang pinalaki para hindi mukhang maliit */
+    height: auto;
+}
+
+header .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 25px; /* Eto ang magpapalayo sa bawat button (Home, Shop, etc.) */
+}
+
+header .nav-left {
+    display: flex;
+    gap: 15px; /* Space sa pagitan ng Home, Shop, Employee */
+}
+
+/* Button look with more inner space */
+header .nav-links a {
+    background-color: #FF5733;
+    color: white !important;
+    text-decoration: none;
+    padding: 10px 20px; /* Dinagdagan ang space sa loob ng button */
+    border-radius: 8px; /* Mas kurbado para mas modern */
+    font-size: 15px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+/* Magkakaroon ng space ang Login button sa dulo */
+header .nav-right {
+    margin-left: 20px; 
+}
+header .nav-links a:hover {
+    background-color: #C70039;
+}
+
+/* RESPONSIVE: Para sa Cellphone */
+@media (max-width: 768px) {
+    header { flex-direction: column; text-align: center; }
+    header .nav-links { flex-direction: column; width: 100%; margin-top: 10px; }
+    header .nav-left { flex-direction: column; width: 100%; }
+    header .nav-links a { width: 100%; display: block; }
+}
+
+header h1 {
+    color: #ffffff; /* Palitan mo ito ng kahit anong kulay (ex: Gold, White, etc.) */
+    font-size: 2rem;
+    margin: 0;
+}
+
+/* Main Section */
+main {
+    padding: 50px;
+    text-align: center;
+}
+
+.search-bar {
+    padding: 10px;
+    width: 80%;
+    max-width: 600px;
+    margin-bottom: 30px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.products {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.product-card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 200px;
+    text-align: center;
+}
+
+.product-card img {
+    width: 150px;
+    height: auto;
+    margin-bottom: 15px;
+}
+
+.product-card button {
+    background-color: #ffc107;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+#products-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.product-card {
+    width: 200px;
+    margin: 10px;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.product-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.product-card h3 {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.product-card p {
+    font-size: 16px;
+    color: #333;
+}
+
+#pagination {
+    margin-top: 30px;
+}
+
+#pagination button {
+    background-color: #ffc107;
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* Button Styling */
+.btn {
+    background-color: #FF5733; /* Button background color */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    text-align: center;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: #C70039; /* Hover effect color */
+}
+
+/* General Footer Styling */
+footer {
+    background-image: url(BG1.webp);
+    background-size: cover;
+    background-position: center;
+    color: white;
+    text-align: center;
+    padding: 15px 10px; /* Slight padding for a more balanced layout */
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%; /* Full width for footer */
+    height: 250px; /* Increased footer height for better content spacing */
+    display: flex;
+    justify-content: space-between; /* Spaces between sections */
+    align-items: center;
+    flex-wrap: wrap; /* Allow wrap for mobile */
+    z-index: 1000; /* Ensure footer stays above other content */
+}
+
+/* Footer Text */
+footer p {
+    font-size: 14px;
+    margin: 0;
+}
+
+/* Quick Links section - Centered */
+.footer-box.quick-links {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    text-align: left;
+    flex: 1; /* Takes up available space */
+    margin: 10px;
+}
+
+.footer-box.quick-links h3 {
+    margin-bottom: 10px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.footer-box.quick-links a {
+    color: #ECF0F1;
+    text-decoration: none;
+    margin: 3px 0;
+    font-size: 18px;
+}
+
+.footer-box.quick-links a:hover {
+    color: #3498DB;
+}
+
+/* About Us section - Left-aligned */
+.footer-box.about-us {
+    text-align: left;
+    flex: 1; /* Takes up available space */
+    margin: 10px;
+}
+
+.footer-box.about-us h3 {
+    margin-bottom: 5px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.footer-box.about-us p {
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+/* For More Questions - Upper Right-aligned */
+.footer-box.for-more-questions {
+    text-align: right;
+    width: 200px; /* Adjusted form width */
+    margin: 10px;
+}
+
+.footer-box.for-more-questions h3 {
+    margin-bottom: 5px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.footer-box.for-more-questions form {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.footer-box.for-more-questions input {
+    padding: 8px;
+    font-size: 14px;
+    border-radius: 4px;
+    border: 1px solid #BDC3C7;
+}
+
+.footer-box.for-more-questions button {
+    padding: 8px;
+    background-color: #3498DB;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.footer-box.for-more-questions button:hover {
+    background-color: #2980B9;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    footer {
+        padding: 15px;
+        height: auto; /* Allow height to adjust on mobile */
+        flex-direction: column; /* Stack sections on mobile */
+        align-items: center; /* Center items */
+    }
+
+    .footer-box {
+        width: 100%; /* Full width on mobile */
+        text-align: center;
+    }
+
+    .footer-box.for-more-questions {
+        position: static;
+        margin-top: 10px;
+        text-align: center;
+        width: 100%; /* Ensure full width on mobile */
+    }
+
+    .footer-box.quick-links h3 {
+        font-size: 18px; /* Adjust heading size */
+    }
+
+    .footer-box.quick-links a {
+        font-size: 16px; /* Adjust link size */
+    }
+
+    /* Ensure logo and navigation do not change */
+    header {
+        flex-wrap: wrap; /* Keep original layout */
+        align-items: center;
+    }
+
+    header .logo img {
+        width: 50px; /* Keep logo size unchanged */
+    }
+
+    header .nav-links {
+        flex-direction: row; /* Keep navigation links in a row */
+    }
+
+    header .nav-links a {
+        font-size: 16px; /* Ensure link size consistency */
+    }
+
+    .product-card {
+        width: 100%; /* Make product cards responsive */
+        max-width: 250px;
+        margin: 10px;
+        padding: 15px;
+    }
+
+    .product-card img {
+        width: 100%;
+        height: auto;
+    }
+
+    .search-bar {
+        width: 90%;
+        max-width: 500px;
+    }
+
+    #pagination {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    #pagination button {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+}
